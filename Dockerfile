@@ -10,7 +10,21 @@ RUN sed -i -e 's/archive.ubuntu/kr.archive.ubuntu/' /etc/apt/sources.list
 RUN apt-get update && apt-get -y upgrade
 
 # install required packages
-RUN apt-get install -y git openssh-server
+RUN apt-get -qq --yes update && \
+    apt-get -qq --yes install wget git-core unzip \
+    gcc-multilib build-essential openssh-server && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN apt-get -qq --yes update && \
+    apt-get -qq --yes install gawk diffstat texinfo chrpath socat libsdl1.2-dev \
+    xterm curl && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Add "repo" tool (used by many Yocto-based projects)
+RUN curl http://storage.googleapis.com/git-repo-downloads/repo > /usr/local/bin/repo
+RUN chmod a+x /usr/local/bin/repo
 
 # enable root login
 RUN mkdir /var/run/sshd
