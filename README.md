@@ -14,4 +14,4 @@ Please refer to the `README.md` file available under each subdirectory for detai
 * macOS High Sierra version 10.13
 
 ## Note
-This project is [gmacario/easy-build](https://github.com/gmacario/easy-build)를 
+Refer to [gmacario/easy-build](https://github.com/gmacario/easy-build)
